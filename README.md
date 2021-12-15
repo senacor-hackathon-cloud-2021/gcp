@@ -28,3 +28,22 @@ After looking at Googles offerings for container / serverless services, I decide
 - [App Engine](./appEngine)
 - [Cloud Function](./cloudFunction)
 - [Cloud Run](./cloudRun)
+
+## Prerequisites
+
+I did setup a Google project beforehand where I activated all needed APIs beforehand. I also deleted the default network
+and created a custom VPC.
+
+## Order of tryouts
+
+I started with [App Engine](./appEngine) in general. More specific with [App Engine Flexible](./appEngine/flexible).
+After that continued with [App Engine Standard](./appEngine/standard).
+Following that I continued with [Cloud Run](./cloudRun) and closed with [Cloud Functions](./cloudFunctions).
+
+Therefore the Readme reading order is:
+
+1. [App Engine](./appEngine)
+2. [App Engine Flexible](./appEngine/flexible)
+3. [App Engine Standard](./appEngine/standard)
+4. [Cloud Run](./cloudRun)
+5. [Cloud Functions](./cloudFunctions)

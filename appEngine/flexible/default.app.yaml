@@ -1,0 +1,37 @@
+service: default
+runtime: nodejs
+env: flex
+service_account: appengine-default-service@senacor-cloud-hackathon2021.iam.gserviceaccount.com
+network:
+  instance_tag: hackathon-appengine-flex
+  name: senacor-hackathon
+  subnetwork_name: appengine-flex
+  forwarded_ports:
+    - 80:8080/tcp
+resources:
+  cpu: 1
+  memory_gb: 0.6
+  disk_size_gb: 10
+liveness_check:
+  path: "/probes/health"
+  check_interval_sec: 30
+  timeout_sec: 4
+  failure_threshold: 2
+  success_threshold: 2
+  initial_delay_sec: 60
+readiness_check:
+  path: "/probes/readiness"
+  check_interval_sec: 5
+  timeout_sec: 4
+  failure_threshold: 2
+  success_threshold: 2
+  app_start_timeout_sec: 100
+automatic_scaling:
+  min_num_instances: 1
+  max_num_instances: 2
+  cool_down_period_sec: 120
+  target_concurrent_requests: 100
+env_variables:
+  APP_LOG_LEVEL: info
+  APP_LOG_SOURCE: true
+  SERVICE: default
