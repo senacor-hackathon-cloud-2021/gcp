@@ -1,0 +1,32 @@
+name: "Reviewdog"
+on:
+  push:
+    branches: ["**"]
+    tags-ignore: ["**"]
+
+jobs:
+  misspell:
+    name: "Misspell check"
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2.4.0
+      - name: Check misspell
+        uses: reviewdog/action-misspell@v1.9.0
+        with:
+          github_token: ${{ secrets.github_token }}
+          reporter: github-check
+          locale: "US"
+          fail_on_error: true
+  yamllint:
+    name: "Yamllint check"
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2.4.0
+      - name: Check yamllint
+        uses: reviewdog/action-yamllint@v1.4.0
+        with:
+          github_token: ${{ secrets.github_token }}
+          reporter: github-check
+          fail_on_error: true

@@ -1,0 +1,22 @@
+service: test
+env: flex
+service_account: appengine-test-service@senacor-cloud-hackathon2021.iam.gserviceaccount.com
+resources:
+  cpu: 1
+  memory_gb: 0.6
+  disk_size_gb: 10
+liveness_check:
+  path: "/probes/health"
+  check_interval_sec: 10
+  timeout_sec: 2
+  failure_threshold: 2
+  success_threshold: 2
+  initial_delay_sec: 10
+automatic_scaling:
+  min_num_instances: 1
+  max_num_instances: 8
+  cool_down_period_sec: 120
+  target_concurrent_requests: 100
+env_variables:
+  APP_LOG_LEVEL: info
+  APP_LOG_SOURCE: true
