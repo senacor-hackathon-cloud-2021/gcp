@@ -24,10 +24,10 @@ I used was `sebastianneb/senacor-hackathon-node-service:v0.0.1`.
 - The `--image-url` flag must be set when we want to customize the docker container.
 - Public registries like dockerhub do not work, we need to configure our own
   Google container registry or Artifact registry.
-- Either use the default network or create an appropiate VPC with a subnet for AppEngine flex. If using a custom VPC
+- Either use the default network or create an appropriate VPC with a subnet for AppEngine flex. If using a custom VPC
   make sure to enable a firewall rule to allow traffic to those containers.
 - Liveness and Readiness should be defined for faster startup times.
-- Error messages and errors why it couldn't be created are very bad.
+- Error messages and erroes why it couldn't be created are very bad.
 - Deployment done via `gcloud app deploy default.app.yaml --version 1 --image-url=europe-docker.pkg.dev/sebastianneb/senacor-hackathon-node-service:v0.0.1`
 
 ### Detailed Deployment history and caveats via app.yaml
@@ -37,9 +37,9 @@ documentation for this configuration yaml can be accessed [here](https://cloud.g
 The deployment itself is triggered with the command `gcloud app deploy app.yaml --version 1 --image-url=sebastianneb/senacor-hackathon-node-service:v0.0.1`.
 The command has to be executed in the directory where the `app.yaml` is located.
 
-I also created a seperate service account for this specific service (the default one and the test one)
+I also created a separate service account for this specific service (the default one and the test one)
 
-While doing this the first time thwe following error occured:
+While doing this the first time thwe following error occurred:
 
 ```bash
 ERROR: (gcloud.app.deploy) sebastianneb/senacor-hackathon-node-service:v0.0.1 is not in a supported registry.  Supported
