@@ -1,8 +1,6 @@
 # App Engine Flexible
 
 Since AppEngine flexible totally relies on Docker images, we used the pushed image for the simple node service.
-A comparison should happen also between Compute Engine managed instances [](https://cloud.google.com/compute/docs/instance-groups/creating-groups-of-managed-instances),
-since in the end AppEngine flexible starts those instances and "manages" those.
 
 ## Deployment
 

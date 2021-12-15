@@ -1,0 +1,47 @@
+#!/usr/bin/env node
+// require("@google-cloud/trace-agent").start()
+// require("@google-cloud/debug-agent").start({
+//   serviceContext: { enableCanary: true },
+// })
+const app = require("../src/app")
+const http = require("http")
+const log = require("../src/logger")("schibbler-server")
+
+const defaultPort = 8080
+
+const normalizePort = (portValue) => {
+  const port = parseInt(portValue, 10)
+
+  if (isNaN(port)) {
+    return portValue
+  }
+
+  if (port >= 0) {
+    return port
+  }
+
+  return false
+}
+
+const onError = (error) => {
+  if (error.syscall !== "listen") {
+    throw error
+  }
+
+  throw error
+}
+
+const onListening = () => {
+  const addrress = server.address()
+  const bind =
+    typeof addrress === "string" ? "pipe " + addrress : "port " + addrress.port
+  log.info("Server started and Listening on " + bind)
+}
+
+const port = normalizePort(process.env.PORT || defaultPort)
+app.set("port", port)
+
+const server = http.createServer(app)
+server.listen(port)
+server.on("error", onError)
+server.on("listening", onListening)

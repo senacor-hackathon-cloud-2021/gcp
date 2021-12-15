@@ -1,0 +1,18 @@
+service: standard
+runtime: nodejs16
+service_account: appengine-standard-service@senacor-cloud-hackathon2021.iam.gserviceaccount.com
+entrypoint: "node bin/www"
+instance_class: F1
+vpc_access_connector:
+  name: "projects/senacor-cloud-hackathon2021/locations/europe-west3/connectors/appengine-standard"
+  egress_setting: private-ranges-only
+automatic_scaling:
+  min_instances: 0
+  max_instances: 2
+  max_concurrent_requests: 10
+  min_pending_latency: 500ms
+  max_pending_latency: automatic
+env_variables:
+  APP_LOG_LEVEL: info
+  APP_LOG_SOURCE: true
+  SERVICE: standard

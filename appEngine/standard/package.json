@@ -1,0 +1,30 @@
+{
+  "name": "schibbler-backend",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon ./bin/www",
+    "lint": "eslint .",
+    "lint.fix": "eslint --fix .",
+    "prettier": "prettier --check .",
+    "prettier.fix": "prettier --write ."
+  },
+  "dependencies": {
+    "bunyan": "^1.8.15",
+    "express": "~4.17.1",
+    "morgan": "~1.10.0",
+    "morgan-json": "^1.1.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.4.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "nodemon": "^2.0.15",
+    "pre-commit": "^1.2.2",
+    "prettier": "2.5.1"
+  },
+  "pre-commit": [
+    "lint",
+    "prettier"
+  ]
+}

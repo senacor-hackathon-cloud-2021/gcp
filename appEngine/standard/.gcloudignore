@@ -1,0 +1,13 @@
+.gcloudignore
+.git
+.gitignore
+.eslintrc.json
+.markdownlint.yaml
+.prettierignore
+.prettierrc.json
+.reviewdog.yaml
+.yamllint.yaml
+nodemon.json
+README.md
+node_modules/
+.github/
