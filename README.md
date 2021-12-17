@@ -47,3 +47,15 @@ Therefore the Readme reading order is:
 3. [App Engine Standard](./appEngine/standard)
 4. [Cloud Run](./cloudRun)
 5. [Cloud Functions](./cloudFunctions)
+6. [Monitoring and Logging](./monitoring-logging)
+7. [Load Test](./loadTest)
+
+## Integration with other google services
+
+All Google services can run with a custom service account and custom permissions. Due to the availabitlty of the metadata
+server, you can always receive a short lived access token to access other Google services out of the box.
+
+## Switiching
+
+Due to the fact that you can configure each path of the LoadBalancer to serve a specific path, it is really easy to switch
+to another serverless service without interferring with the API. Also Canary tests are easy doable there.

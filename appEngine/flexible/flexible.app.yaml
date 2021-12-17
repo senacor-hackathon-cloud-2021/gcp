@@ -30,7 +30,7 @@ automatic_scaling:
   min_num_instances: 1
   max_num_instances: 2
   cool_down_period_sec: 120
-  target_concurrent_requests: 100
+  target_concurrent_requests: 10
 env_variables:
   APP_LOG_LEVEL: info
   APP_LOG_SOURCE: true

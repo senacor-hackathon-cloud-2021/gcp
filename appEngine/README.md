@@ -36,3 +36,51 @@ For more in-depth documentation look at [App Engine Flexible](./flexible).
 
 With the standard environment you can just run specific language code without having to manage any server or anything else.
 For more in-depth documentation look at [App Engine Standard](./standard).
+
+## Make it available under a Global HTTPS LoadBalancer
+
+Since the created URLs for AppEngine services looks pretty strange (e.g. [](https://senacor-cloud-hackathon2021.ey.r.appspot.com/gcp)),
+I want to make it accessible under e.g. `hackathon.senacor.sebastianneb.de` and route specific subpaths to specific
+AppEngine services. This would enable a later switch from standard to flexible and vice versa much easier. Also a
+switch to a different platform like CloudRun oder CloudFunctions is possible.
+
+I tried out the new Global external HTTPS LoadBalancer that is currently in preview. The only downside is, that a later
+switch to Kubernetes is not possible. Nevertheless it is in preview and just great for such an hackathon.
+Following the guide [](https://cloud.google.com/load-balancing/docs/https/setting-up-https-serverless#configure_permissions)
+I created a External HTTPS LoadBalancer and for the time being forwarded everything to the flexible AppEngine.
+The configuration for the host "hackathon.senacor.sebastianneb.de" looked the following:
+
+```yaml
+defaultService: projects/senacor-cloud-hackathon2021/global/backendServices/hackathon-app-engine-standard
+name: hackathon-appengine
+routeRules:
+  - matchRules:
+      - prefixMatch: /flexible
+    priority: 1
+    routeAction:
+      weightedBackendServices:
+        - backendService: projects/senacor-cloud-hackathon2021/global/backendServices/hackathon-app-engine-flexible
+          weight: 100
+      urlRewrite:
+        pathPrefixRewrite: /gcp
+  - matchRules:
+      - prefixMatch: /standard
+    priority: 2
+    routeAction:
+      weightedBackendServices:
+        - backendService: projects/senacor-cloud-hackathon2021/global/backendServices/hackathon-app-engine-standard
+          weight: 100
+      urlRewrite:
+        pathPrefixRewrite: /gcp
+  - matchRules:
+      - prefixMatch: /
+    priority: 3
+    routeAction:
+      weightedBackendServices:
+        - backendService: projects/senacor-cloud-hackathon2021/global/backendServices/hackathon-app-engine-standard
+          weight: 50
+        - backendService: projects/senacor-cloud-hackathon2021/global/backendServices/hackathon-app-engine-flexible
+          weight: 50
+      urlRewrite:
+        pathPrefixRewrite: /gcp
+```
