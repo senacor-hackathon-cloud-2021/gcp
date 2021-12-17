@@ -58,4 +58,4 @@ server, you can always receive a short lived access token to access other Google
 ## Switiching
 
 Due to the fact that you can configure each path of the LoadBalancer to serve a specific path, it is really easy to switch
-to another serverless service without interferring with the API. Also Canary tests are easy doable there.
+to another serverless service without interfering with the API. Also Canary tests are easy doable there.
